@@ -23,7 +23,7 @@ namespace CreerLancerDe
         private void Form1_Load(object sender, EventArgs e)
         {
 
-            DatabaseConn.DBConnect();         
+            //DatabaseConn.DBConnect();         
         }
 
         private void button1_Click(object sender, EventArgs e)

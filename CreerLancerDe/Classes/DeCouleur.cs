@@ -9,28 +9,32 @@ namespace CreerLancerDe
     class DeCouleur : StructureDe
     {
         private int faces;
-        private int type;
-        private Array couleurs;
-        public override int Faces
-        {
-            get { return faces; }
-            set { faces = value; }
-        }
+        public override int Type { get; set; }
+        public override int Faces { get; set; }
+        public Array Couleurs { get; set; }
 
-        public Array Couleurs
+        public DeCouleur(int faces, int type, Array couleur) : base(faces, type)
+        {
+            Faces = faces;
+            Type = type;
+            Couleurs = couleur;
+        }
+        /*        public override int Faces
+                {
+                    get { return faces; }
+                    set { faces = value; }
+                }
+        */
+        /*public Array Couleurs
         {
             get { return couleurs; }
             set { couleurs = value; }
-        }
-        public override int Type
-        {
-            get { return type; }
-            set { type = value; }
-        }
-        public DeCouleur(int Faces, int Type, Array couleur) : base(Faces,Type)
-        {
-            faces = Faces;
-            type = Type;
-        }
+        }*/
+        /*        public override int Type
+                {
+                    get { return type; }
+                    set { type = value; }
+                }*/
+
     }
 }

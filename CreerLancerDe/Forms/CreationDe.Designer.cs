@@ -30,128 +30,110 @@ namespace CreerLancerDe.Forms
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.TabCreationDe = new System.Windows.Forms.TabControl();
-            this.CreationDeNormal = new System.Windows.Forms.TabPage();
-            this.CreationDePersonaliser = new System.Windows.Forms.TabPage();
-            this.txtNFace = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
+            this.cmbTypeDe = new System.Windows.Forms.ComboBox();
+            this.lblTypeDe = new System.Windows.Forms.Label();
             this.NomDeTxt = new System.Windows.Forms.TextBox();
-            this.smtCreationDe = new System.Windows.Forms.Button();
-            this.erreurNFaceNormal = new System.Windows.Forms.ErrorProvider(this.components);
-            this.TabCreationDe.SuspendLayout();
-            this.CreationDeNormal.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.erreurNFaceNormal)).BeginInit();
+            this.txtNFace = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.smtCreation = new System.Windows.Forms.Button();
+            this.errorNombreFaces = new System.Windows.Forms.ErrorProvider(this.components);
+            ((System.ComponentModel.ISupportInitialize)(this.errorNombreFaces)).BeginInit();
             this.SuspendLayout();
             // 
-            // TabCreationDe
+            // cmbTypeDe
             // 
-            this.TabCreationDe.Controls.Add(this.CreationDeNormal);
-            this.TabCreationDe.Controls.Add(this.CreationDePersonaliser);
-            this.TabCreationDe.Location = new System.Drawing.Point(12, 3);
-            this.TabCreationDe.Name = "TabCreationDe";
-            this.TabCreationDe.SelectedIndex = 0;
-            this.TabCreationDe.Size = new System.Drawing.Size(793, 444);
-            this.TabCreationDe.TabIndex = 0;
+            this.cmbTypeDe.FormattingEnabled = true;
+            this.cmbTypeDe.Location = new System.Drawing.Point(105, 112);
+            this.cmbTypeDe.Name = "cmbTypeDe";
+            this.cmbTypeDe.Size = new System.Drawing.Size(81, 21);
+            this.cmbTypeDe.TabIndex = 14;
+            this.cmbTypeDe.SelectedIndexChanged += new System.EventHandler(this.cmbTypeDe_SelectedIndexChanged_1);
             // 
-            // CreationDeNormal
+            // lblTypeDe
             // 
-            this.CreationDeNormal.BackColor = System.Drawing.Color.LightGreen;
-            this.CreationDeNormal.Controls.Add(this.smtCreationDe);
-            this.CreationDeNormal.Controls.Add(this.NomDeTxt);
-            this.CreationDeNormal.Controls.Add(this.label2);
-            this.CreationDeNormal.Controls.Add(this.label1);
-            this.CreationDeNormal.Controls.Add(this.txtNFace);
-            this.CreationDeNormal.Location = new System.Drawing.Point(4, 24);
-            this.CreationDeNormal.Name = "CreationDeNormal";
-            this.CreationDeNormal.Padding = new System.Windows.Forms.Padding(3);
-            this.CreationDeNormal.Size = new System.Drawing.Size(785, 416);
-            this.CreationDeNormal.TabIndex = 0;
-            this.CreationDeNormal.Text = "Dé Normal";
+            this.lblTypeDe.AutoSize = true;
+            this.lblTypeDe.Location = new System.Drawing.Point(17, 115);
+            this.lblTypeDe.Name = "lblTypeDe";
+            this.lblTypeDe.Size = new System.Drawing.Size(46, 13);
+            this.lblTypeDe.TabIndex = 13;
+            this.lblTypeDe.Text = "Type de";
             // 
-            // CreationDePersonaliser
+            // NomDeTxt
             // 
-            this.CreationDePersonaliser.Location = new System.Drawing.Point(4, 24);
-            this.CreationDePersonaliser.Name = "CreationDePersonaliser";
-            this.CreationDePersonaliser.Padding = new System.Windows.Forms.Padding(3);
-            this.CreationDePersonaliser.Size = new System.Drawing.Size(785, 416);
-            this.CreationDePersonaliser.TabIndex = 1;
-            this.CreationDePersonaliser.Text = "Dé Personaliser";
-            this.CreationDePersonaliser.UseVisualStyleBackColor = true;
+            this.NomDeTxt.Location = new System.Drawing.Point(105, 75);
+            this.NomDeTxt.Name = "NomDeTxt";
+            this.NomDeTxt.Size = new System.Drawing.Size(81, 20);
+            this.NomDeTxt.TabIndex = 11;
             // 
             // txtNFace
             // 
-            this.txtNFace.Location = new System.Drawing.Point(127, 37);
+            this.txtNFace.Location = new System.Drawing.Point(105, 38);
             this.txtNFace.Name = "txtNFace";
-            this.txtNFace.Size = new System.Drawing.Size(75, 23);
-            this.txtNFace.TabIndex = 0;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(24, 40);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(97, 15);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "Nombre de faces";
+            this.txtNFace.Size = new System.Drawing.Size(81, 20);
+            this.txtNFace.TabIndex = 8;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(24, 80);
+            this.label2.Location = new System.Drawing.Point(17, 75);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(67, 15);
-            this.label2.TabIndex = 2;
+            this.label2.Size = new System.Drawing.Size(59, 13);
+            this.label2.TabIndex = 10;
             this.label2.Text = "Nom du dé";
-            this.label2.Click += new System.EventHandler(this.label2_Click);
             // 
-            // NomDeTxt
+            // label1
             // 
-            this.NomDeTxt.Location = new System.Drawing.Point(127, 80);
-            this.NomDeTxt.Name = "NomDeTxt";
-            this.NomDeTxt.Size = new System.Drawing.Size(75, 23);
-            this.NomDeTxt.TabIndex = 3;
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(17, 41);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(88, 13);
+            this.label1.TabIndex = 9;
+            this.label1.Text = "Nombre de faces";
             // 
-            // smtCreationDe
+            // smtCreation
             // 
-            this.smtCreationDe.Location = new System.Drawing.Point(127, 128);
-            this.smtCreationDe.Name = "smtCreationDe";
-            this.smtCreationDe.Size = new System.Drawing.Size(75, 23);
-            this.smtCreationDe.TabIndex = 4;
-            this.smtCreationDe.Text = "Submit";
-            this.smtCreationDe.UseVisualStyleBackColor = true;
-            this.smtCreationDe.Click += new System.EventHandler(this.smtCreationDe_Click);
+            this.smtCreation.Location = new System.Drawing.Point(105, 170);
+            this.smtCreation.Name = "smtCreation";
+            this.smtCreation.Size = new System.Drawing.Size(75, 23);
+            this.smtCreation.TabIndex = 15;
+            this.smtCreation.Text = "Submit";
+            this.smtCreation.UseVisualStyleBackColor = true;
+            this.smtCreation.Click += new System.EventHandler(this.smtCreation_Click);
             // 
-            // erreurNFaceNormal
+            // errorNombreFaces
             // 
-            this.erreurNFaceNormal.ContainerControl = this;
+            this.errorNombreFaces.ContainerControl = this;
             // 
             // CreationDe
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.TabCreationDe);
+            this.BackColor = System.Drawing.Color.PaleGreen;
+            this.ClientSize = new System.Drawing.Size(686, 390);
+            this.Controls.Add(this.smtCreation);
+            this.Controls.Add(this.cmbTypeDe);
+            this.Controls.Add(this.lblTypeDe);
+            this.Controls.Add(this.NomDeTxt);
+            this.Controls.Add(this.txtNFace);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.label1);
             this.Name = "CreationDe";
             this.Text = "CreationDe";
-            this.TabCreationDe.ResumeLayout(false);
-            this.CreationDeNormal.ResumeLayout(false);
-            this.CreationDeNormal.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.erreurNFaceNormal)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorNombreFaces)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
         #endregion
-
-        private System.Windows.Forms.TabControl TabCreationDe;
-        private System.Windows.Forms.TabPage CreationDeNormal;
+        private System.Windows.Forms.ComboBox cmbTypeDe;
+        private System.Windows.Forms.Label lblTypeDe;
+        private System.Windows.Forms.TextBox NomDeTxt;
+        private System.Windows.Forms.TextBox txtNFace;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox txtNFace;
-        private System.Windows.Forms.TabPage CreationDePersonaliser;
-        private System.Windows.Forms.Button smtCreationDe;
-        private System.Windows.Forms.TextBox NomDeTxt;
-        private System.Windows.Forms.ErrorProvider erreurNFaceNormal;
+        private System.Windows.Forms.Button smtCreation;
+        private System.Windows.Forms.ErrorProvider errorNombreFaces;
     }
 }

@@ -12,8 +12,8 @@ namespace CreerLancerDe
         public abstract int Type { get; set; }
         public StructureDe(int faces, int type)
         {
-            Faces = faces;
-            Type = type;
+            Faces=faces;
+            Type=type;
         }
         /*
          COMMENTAIRE IMPORTANT

@@ -6,8 +6,9 @@ using System.Threading.Tasks;
 
 namespace CreerLancerDe
 {
-    public class DeNormal : StructureDe
+    public class De : StructureDe
     {
+        private string nom;
         private int faces;
         private int type;
         public override int Faces
@@ -20,9 +21,16 @@ namespace CreerLancerDe
             get { return type; }
             set { type = value; }
         }
-        public DeNormal(int Faces, int Type):base(Faces,Type) {
+        public string Nom
+        {
+            get { return nom; }
+            set { nom = value; }
+        }
+
+        public De(int Faces, int Type,string Nom):base(Faces,Type) {
             faces=Faces;
             type = Type;
+            nom = Nom;
         }
     }
 }
