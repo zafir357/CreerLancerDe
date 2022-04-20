@@ -11,8 +11,10 @@ namespace CreerLancerDe
         public static class Queries
         {
             public static readonly string QueryTypeDe = "SELECT * FROM dbo.type_de";
-            public static readonly string QueryInsertDe = "Insert into dbo.de(nom_de,faces,type_de)Values(@Nom, @Type)";
-            public static readonly string QueryInsertContenuDe = "Insert into dbo.contenu_de(contenu_de)Values(@JSONContenu)";
+            public static readonly string QueryInsertDe = "Insert into dbo.de(nom_de,faces,type_de_id,contenu_de_id)Values(@Nom,@NFaces,@Type,@Contenu_de);";
+            public static readonly string QueryInsertContenuDe = "DECLARE @InsertedRows AS TABLE (id int)" +
+                "Insert into dbo.contenu_de(contenu_de) OUTPUT INSERTED.[id]Values(@JSONContenu);" +
+                "SELECT id from @InsertedRows";
         }
         public static class Erreurs
         {

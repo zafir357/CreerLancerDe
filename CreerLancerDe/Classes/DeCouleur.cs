@@ -8,7 +8,6 @@ namespace CreerLancerDe
 {
     class DeCouleur : StructureDe
     {
-        private int faces;
         public override int Type { get; set; }
         public override int Faces { get; set; }
         public Array Couleurs { get; set; }

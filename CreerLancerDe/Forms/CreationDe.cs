@@ -8,7 +8,7 @@ using System.Data;
 using System.Diagnostics;
 using System.Linq;
 using System.Windows.Forms;
-
+using static CréerLancerUnDé.Log.Logger;
 namespace CreerLancerDe.Forms
 {
     public partial class CreationDe : Form
@@ -79,16 +79,20 @@ namespace CreerLancerDe.Forms
 
         private void smtCreation_Click(object sender, EventArgs e)
         {
-            De De;
+           
             int parsedValue = validation.IntValidation(txtNFace.Text.Trim(), errorNombreFaces, txtNFace);
+            DynamicParameters DeParams = new DynamicParameters();
+            DeParams.Add("@Nom", NomDeTxt.Text.Trim());
+            DeParams.Add("@Type", cmbTypeDe.SelectedValue.ToString());
+            DeParams.Add("@NFaces", txtNFace.Text.Trim());
             try
             {
+
                 if (NomDeTxt != null && (((TypeDe)cmbTypeDe.SelectedItem).Type== "Dé Normal"))
                 {
-                    gestionDeClassic(parsedValue);
+                    gestionDeClassic(parsedValue, DeParams);
                 }
                 
-
             }
             catch (Exception ex)
             {
@@ -97,35 +101,40 @@ namespace CreerLancerDe.Forms
             }
         }
 
-        private void gestionDeClassic(int parsedValue)
+        private void gestionDeClassic(int parsedValue, DynamicParameters DeParams)
         {
      
-            DynamicParameters DeParams = new DynamicParameters();
-            DeParams.Add("@Nom", NomDeTxt.Text.Trim());
-            DeParams.Add("@Type", cmbTypeDe.SelectedValue.ToString());
-            DeParams.Add("@NFaces", NomDeTxt.Text.Trim());
+
             List<int> dynList = new List<int>();
-         
-/*            var dynNullArray = dynArray ?? 0;*/
+            DynamicParameters ParamContenuDe = new DynamicParameters();
+            int id;
+            De de;
             try
             {
-                De de = new De(parsedValue, Int32.Parse(cmbTypeDe.SelectedValue.ToString()), NomDeTxt.Text.Trim());
-                DatabaseConn.InsertData<De>(CEnum.Queries.QueryInsertDe, DeParams);
                 for (int i = 1; i <= parsedValue; i++)
                 {
                     dynList.Add(i);
                 }
-                DynamicParameters ParamContenuDe = new DynamicParameters();
                 string JsonObject = JsonConvert.SerializeObject(dynList);
-                ContenuDe x = new ContenuDe(1,JsonObject);
-                Debug.WriteLine(x.ToString());
                 ParamContenuDe.Add("@JSONContenu", JsonObject);
-
-                DatabaseConn.InsertData<ContenuDe>(CEnum.Queries.QueryInsertContenuDe, ParamContenuDe);
+                id = DatabaseConn.InsertData<ContenuDe>(CEnum.Queries.QueryInsertContenuDe, ParamContenuDe);
+                DeParams.Add("@Contenu_de",id);
+                try
+                {
+                    if (id > -1)
+                    {
+                         de= new De(parsedValue, Int32.Parse(cmbTypeDe.SelectedValue.ToString()), NomDeTxt.Text.Trim(), id);
+                        DatabaseConn.InsertData<De>(CEnum.Queries.QueryInsertDe, DeParams);
+                    }
+                }
+                catch(Exception ex)
+                {
+                    LogThisLine("Exception Interne"+ex.ToString());
+                }
             }
             catch (Exception ex)
             {
-
+                LogThisLine(ex.ToString());
             }
 
         }

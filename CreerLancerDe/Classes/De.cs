@@ -8,29 +8,17 @@ namespace CreerLancerDe
 {
     public class De : StructureDe
     {
-        private string nom;
-        private int faces;
-        private int type;
-        public override int Faces
-        {
-            get { return faces; }
-            set { faces = value; }
-        }
-        public override int Type
-        {
-            get { return type; }
-            set { type = value; }
-        }
-        public string Nom
-        {
-            get { return nom; }
-            set { nom = value; }
-        }
 
-        public De(int Faces, int Type,string Nom):base(Faces,Type) {
-            faces=Faces;
-            type = Type;
-            nom = Nom;
+        public override int Type { get; set; }
+        public override int Faces { get; set; }
+        public string Nom {get; set;}
+        public int Contenu_id { get; set; }
+
+        public De(int faces, int type,string nom, int contenu_de):base(faces,type) {
+            Faces=faces;
+            Type=type;
+            Nom=nom;
+            Contenu_id = contenu_de;
         }
     }
 }

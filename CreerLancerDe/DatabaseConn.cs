@@ -47,18 +47,26 @@ namespace CreerLancerDe
         /// </summary>
         /// <param name="sqlString"></param>
         /// <param name="dt"></param>
-        public static void ExecuteCommand(string sqlString, out DataTable dt)
+        public static void ExecuteCommand(string sqlString,  DataTable dt)
+         {
+            try
             {
-            using (SqlConnection connection = new SqlConnection(
+                using (SqlConnection connection = new SqlConnection(
                        connectionString))
-            {
-                using (SqlCommand command = new SqlCommand(sqlString, connection))
                 {
-                    SqlDataAdapter da = new SqlDataAdapter(command);
-                    dt = new DataTable();
-                    da.Fill(dt);
+                    using (SqlCommand command = new SqlCommand(sqlString, connection))
+                    {
+                        SqlDataAdapter da = new SqlDataAdapter(command);
+                        dt = new DataTable();
+                        da.Fill(dt);
+                    }
                 }
             }
+            catch(Exception ex)
+            {
+                LogThisLine(ex.ToString());
+            }
+            
         }
         
        
@@ -121,14 +129,21 @@ namespace CreerLancerDe
                  ); });
             };
         }
-
-        public static void InsertData<T>(string sqlString, DynamicParameters parameters)
+        /// <summary>
+        /// méthode pour sauvegarder une seule ligne dans la base
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="sqlString"></param>
+        /// <param name="parameters"></param>
+        /// <returns></returns>
+        public static int InsertData<T>(string sqlString, DynamicParameters parameters)
         {
 
 
             using (var connection = new SqlConnection(connectionString))
             {
-                object result = connection.Execute(sqlString, parameters);
+                int result = connection.ExecuteScalar<int>(sqlString, parameters);
+                return result;
             }
         }
         #endregion
