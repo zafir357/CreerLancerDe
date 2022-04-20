@@ -103,8 +103,6 @@ namespace CreerLancerDe.Forms
 
         private void gestionDeClassic(int parsedValue, DynamicParameters DeParams)
         {
-     
-
             List<int> dynList = new List<int>();
             DynamicParameters ParamContenuDe = new DynamicParameters();
             int id;
@@ -124,7 +122,12 @@ namespace CreerLancerDe.Forms
                     if (id > -1)
                     {
                          de= new De(parsedValue, Int32.Parse(cmbTypeDe.SelectedValue.ToString()), NomDeTxt.Text.Trim(), id);
-                        DatabaseConn.InsertData<De>(CEnum.Queries.QueryInsertDe, DeParams);
+                       int insertion= DatabaseConn.InsertData<De>(CEnum.Queries.QueryInsertDe, DeParams);
+                        if (insertion >-1)
+                        {
+                            ViderChampCreationDe();
+                            MessageBox.Show("Dé sauvegarder");
+                        }
                     }
                 }
                 catch(Exception ex)
@@ -132,11 +135,14 @@ namespace CreerLancerDe.Forms
                     LogThisLine("Exception Interne"+ex.ToString());
                 }
             }
-            catch (Exception ex)
-            {
-                LogThisLine(ex.ToString());
-            }
 
+        }
+
+        private void ViderChampCreationDe()
+        {
+            txtNFace.Clear();
+            NomDeTxt.Clear();
+            txtNFace.Clear();
         }
     }
 }

@@ -1,0 +1,34 @@
+﻿USE [DBDe]
+GO
+CREATE TABLE type_de (
+    id int NOT NULL IDENTITY(1,1),
+    Type varchar(50) NULL,
+	CONSTRAINT PK_type_de  PRIMARY KEY(Id)
+);
+
+CREATE TABLE contenu_de (
+    id int NOT NULL IDENTITY(1,1),
+    contenu_de TEXT NOT NULL,
+	CONSTRAINT PK_contenu_de  PRIMARY KEY(Id)
+);
+
+CREATE TABLE de (
+    id int NOT NULL IDENTITY(1,1),
+    nom_de varchar(50) NULL,
+	faces int NOT NULL,
+    type_de_id int NOT NULL,
+	contenu_de_id int NOT NULL,
+	CONSTRAINT PK_de PRIMARY KEY(Id),
+    CONSTRAINT FK_DeType_de FOREIGN KEY (type_de_id)
+    REFERENCES type_de(id),
+	CONSTRAINT FK_Contenu_de FOREIGN KEY (contenu_de_id)
+    REFERENCES contenu_de(Id)
+);
+
+
+Delete from type_de;
+
+Insert into type_de values('Dé Normal');
+Insert into type_de values('Dé personnalisés');
+Insert into type_de values('Dé couleur');
+--Insert into type_de values('De Couleur');

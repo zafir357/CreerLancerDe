@@ -137,6 +137,7 @@
     <Content Include="Diagrams\schema_de_base.PNG" />
     <Content Include="Diagrams\UML_class.PNG" />
     <Content Include="Log\log.txt" />
+    <Content Include="Script_sql\script_sql.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
