@@ -24,20 +24,13 @@ namespace CreerLancerDe.Forms
 
         }
 
-        private void smtCreationDe_Click(object sender, EventArgs e)
+/*        private void smtCreationDe_Click(object sender, EventArgs e)
         {
           //  validation.IntValidation(erreurNFaceNormal);
            int parsedValue=validation.IntValidation(txtNFace.Text.Trim(), errorNombreFaces, txtNFace);
             try
             {
-                if (NomDeTxt != null && cmbTypeDe.DisplayMember=="Dé Normal")
-                {
-                    DynamicParameters DeParams = new DynamicParameters();
-                    DeParams.Add("@Nom", NomDeTxt.Text.Trim());
-                    DeParams.Add("@Type", cmbTypeDe.SelectedValue.ToString());
-                    DeParams.Add("@NFaces", NomDeTxt.Text.Trim());
 
-                }
 
             }
             catch(Exception ex) {
@@ -45,7 +38,7 @@ namespace CreerLancerDe.Forms
                 throw;
             }
            
-        }
+        }*/
 
 
         private void label3_Click(object sender, EventArgs e)
@@ -67,7 +60,7 @@ namespace CreerLancerDe.Forms
 
         private void loadListDropdown()
         {
-            DataTable dt;
+     //       DataTable dt;
             //List<Type> types;
             string sql_string = CEnum.Queries.QueryTypeDe;
             List<TypeDe> types=  DatabaseConn.ListReader<TypeDe>(sql_string);
@@ -82,22 +75,29 @@ namespace CreerLancerDe.Forms
            
             int parsedValue = validation.IntValidation(txtNFace.Text.Trim(), errorNombreFaces, txtNFace);
             DynamicParameters DeParams = new DynamicParameters();
-            DeParams.Add("@Nom", NomDeTxt.Text.Trim());
-            DeParams.Add("@Type", cmbTypeDe.SelectedValue.ToString());
-            DeParams.Add("@NFaces", txtNFace.Text.Trim());
             try
             {
-
-                if (NomDeTxt != null && (((TypeDe)cmbTypeDe.SelectedItem).Type== "Dé Normal"))
+                if (NomDeTxt.Text.ToString() != "" && cmbTypeDe.SelectedValue.ToString() != "" && NomDeTxt.Text.ToString() != "")
+                {
+                    DeParams.Add("@Nom", NomDeTxt.Text.Trim());
+                    DeParams.Add("@Type", cmbTypeDe.SelectedValue.ToString());
+                    DeParams.Add("@NFaces", txtNFace.Text.Trim());
+                }
+                if (((TypeDe)cmbTypeDe.SelectedItem).Type== "Dé Normal")
                 {
                     gestionDeClassic(parsedValue, DeParams);
+
+                }
+                else
+                {
+                    MessageBox.Show("Tout les dé doit avoir un nom");
                 }
                 
             }
             catch (Exception ex)
             {
                 ///   new Logger.Logger().WriteLogError(new Logger.Logger(new Logger.Logger { CallerInfo = MethodBase.GetCurrentMethod().DeclaringType, Ex = ex }));
-                throw;
+                LogThisLine("Exception Interne" + ex.ToString());
             }
         }
 
@@ -113,8 +113,9 @@ namespace CreerLancerDe.Forms
                 {
                     dynList.Add(i);
                 }
-                string JsonObject = JsonConvert.SerializeObject(dynList);
-                ParamContenuDe.Add("@JSONContenu", JsonObject);
+                string strFaces = String.Join("|",dynList.ToArray());
+                //string JsonObject = JsonConvert.SerializeObject(dynList);
+                ParamContenuDe.Add("@strContenu", strFaces);
                 id = DatabaseConn.InsertData<ContenuDe>(CEnum.Queries.QueryInsertContenuDe, ParamContenuDe);
                 DeParams.Add("@Contenu_de",id);
                 try
@@ -133,7 +134,12 @@ namespace CreerLancerDe.Forms
                 catch(Exception ex)
                 {
                     LogThisLine("Exception Interne"+ex.ToString());
+                    MessageBox.Show("Problème technique.  Essayer plus tard");
                 }
+            }
+            catch (Exception ex)
+            {
+                LogThisLine(ex.ToString());
             }
 
         }

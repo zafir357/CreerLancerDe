@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CreerLancerDe.Classes;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,8 +12,9 @@ namespace CreerLancerDe
 
         public override int Type { get; set; }
         public override int Faces { get; set; }
-        public string Nom {get; set;}
+        public string Nom { get; set; }
         public int Contenu_id { get; set; }
+        //     public ContenuDe ContenuDe { get; set; }
 
         public De(int faces, int type,string nom, int contenu_de):base(faces,type) {
             Faces=faces;
@@ -20,5 +22,9 @@ namespace CreerLancerDe
             Nom=nom;
             Contenu_id = contenu_de;
         }
+        /// <summary>
+        /// ORM
+        /// </summary>
+ 
     }
 }

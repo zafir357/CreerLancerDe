@@ -13,9 +13,9 @@ using System.Windows.Forms;
 namespace CreerLancerDe
 {
 
-    public partial class DeDynamic : Form
+    public partial class DeFormMain : Form
     {
-        public DeDynamic()
+        public DeFormMain()
         {
             InitializeComponent();
         }
@@ -33,12 +33,18 @@ namespace CreerLancerDe
             creationDe.Show();
         }
 
-/*        public void ConfigureServices(IServiceCollection services)
+        private void LancerDe_Click(object sender, EventArgs e)
         {
-            services.AddLogging(loggingBuilder =>
-            {
-                loggingBuilder.AddSeq();
-            });
-        }*/
+            LancerDe runDice = new LancerDe();
+            runDice.Show();
         }
+
+        /*        public void ConfigureServices(IServiceCollection services)
+                {
+                    services.AddLogging(loggingBuilder =>
+                    {
+                        loggingBuilder.AddSeq();
+                    });
+                }*/
+    }
 }

@@ -17,7 +17,7 @@ namespace CreerLancerDe
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new DeDynamic());
+            Application.Run(new DeFormMain());
         }
     }
 }

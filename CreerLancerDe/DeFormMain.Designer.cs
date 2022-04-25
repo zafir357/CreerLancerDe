@@ -1,7 +1,7 @@
 ﻿
 namespace CreerLancerDe
 {
-    partial class DeDynamic
+    partial class DeFormMain
     {
         /// <summary>
         ///  Required designer variable.
@@ -35,9 +35,9 @@ namespace CreerLancerDe
             // 
             // CreerDe
             // 
-            this.CreerDe.Location = new System.Drawing.Point(330, 129);
+            this.CreerDe.Location = new System.Drawing.Point(283, 112);
             this.CreerDe.Name = "CreerDe";
-            this.CreerDe.Size = new System.Drawing.Size(159, 44);
+            this.CreerDe.Size = new System.Drawing.Size(136, 38);
             this.CreerDe.TabIndex = 2;
             this.CreerDe.Text = "Créer un ou plusieurs dé";
             this.CreerDe.UseVisualStyleBackColor = true;
@@ -45,22 +45,23 @@ namespace CreerLancerDe
             // 
             // LancerDe
             // 
-            this.LancerDe.Location = new System.Drawing.Point(330, 217);
+            this.LancerDe.Location = new System.Drawing.Point(283, 188);
             this.LancerDe.Name = "LancerDe";
-            this.LancerDe.Size = new System.Drawing.Size(159, 44);
+            this.LancerDe.Size = new System.Drawing.Size(136, 38);
             this.LancerDe.TabIndex = 3;
             this.LancerDe.Text = "Lancer un ou plusieurs dé";
             this.LancerDe.UseVisualStyleBackColor = true;
+            this.LancerDe.Click += new System.EventHandler(this.LancerDe_Click);
             // 
-            // DeDynamic
+            // DeFormMain
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(686, 390);
             this.Controls.Add(this.LancerDe);
             this.Controls.Add(this.CreerDe);
-            this.Name = "DeDynamic";
+            this.Name = "DeFormMain";
             this.Text = "Jeux de dé dynamic";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.ResumeLayout(false);

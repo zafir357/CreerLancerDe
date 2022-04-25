@@ -6,17 +6,22 @@ using System.Threading.Tasks;
 
 namespace CreerLancerDe.Classes
 {
-    class ContenuDe
+   public class ContenuDe
     {
-        private int Id { get; set; }
-        private string Contenu { get; set; }
+        public int Contenu_de_id { get; set; }
+        public string Contenu { get; set; }
         public ContenuDe()
         {
         }
         public ContenuDe(int id, string contenuDe)
         {
-            this.Id = id;
-            this.Contenu = contenuDe;
+            Contenu_de_id = id;
+            Contenu = contenuDe;
         }
+
+        /// <summary>
+        /// ORM
+        /// </summary>
+        public ICollection<De> De { get; set; }
     }
 }

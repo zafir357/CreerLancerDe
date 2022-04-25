@@ -1,4 +1,6 @@
-﻿using Dapper;
+﻿using CreerLancerDe.Classes;
+using CreerLancerDe.Model;
+using Dapper;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -20,34 +22,14 @@ namespace CreerLancerDe
        private static ConnectionStringSettings connectionStringSet = ConfigurationManager.ConnectionStrings["DBConnection"];
        private static string connectionString = connectionStringSet.ConnectionString;
         private static int isRowAffected;
-        /*        public static void DBConnect()
-                {
-                    *//*string connectionString;
-                    SqlConnection conn;*//*
-                    //    SqlConnection connectionString1= "Data Source=.\localhost\SQLEXPRESS; Initial Catalog=Northwind;User id = sa;password=pass@123";
 
-
-
-                    //  connectionString = @"Data Source=localhost\SQLEXPRESS;initial catalog=DBDe;integrated security=True;trusted_connection=true;";
-
-                    try
-                    {
-                        ExecuteCommand("SELECT * FROM dbo.de", connectionString);
-                    }
-                    catch (Exception ex)
-                    {
-                        LogThisLine(ex.ToString());
-                    }
-
-                    MessageBox.Show("Connection Open");
-                }*/
         #region Query classic .NET avec SQL adapter
         /// <summary>
         /// 
         /// </summary>
         /// <param name="sqlString"></param>
         /// <param name="dt"></param>
-        public static void ExecuteCommand(string sqlString,  DataTable dt)
+        public static DataTable ExecuteCommand(string sqlString,  DataTable dt)
          {
             try
             {
@@ -60,13 +42,14 @@ namespace CreerLancerDe
                         dt = new DataTable();
                         da.Fill(dt);
                     }
+                   
                 }
             }
             catch(Exception ex)
             {
                 LogThisLine(ex.ToString());
             }
-            
+            return dt;
         }
         
        
@@ -105,10 +88,54 @@ namespace CreerLancerDe
         /// <returns></returns>
         public static List<T> ListReader<T>(string sqlString)
         {
-            using (var connection = new SqlConnection(connectionString))
+            try
             {
-                return connection.Query<T>(sqlString).ToList();
+                using (var connection = new SqlConnection(connectionString))
+                {
+                    return connection.Query<T>(sqlString).ToList();
+                }
             }
+            catch (Exception ex)
+            {
+                List<T> z = null;
+                LogThisLine(ex.ToString());
+                MessageBox.Show("Problem technique, veuillez réessayer plus tard");
+                return z;
+            }
+
+        }
+
+
+
+        public static dynamic DeContenuDe()
+        {
+            try
+            {
+                using (var connection = new SqlConnection(connectionString))
+                {
+                    var sql = "SELECT de.[id] ,de.[nom_de] ,de.[faces], conde.[contenu_de],td.Type, conde.[contenu_de] FROM [dbo].[de] "
+                                + "inner join contenu_de conde on de.contenu_de_id = conde.id "
+                                + "inner join  type_de td on de.type_de_id = td.Id";
+                    dynamic De = connection.Query<DeModel, DeContenuModel, TypeDeModel, DeModel>(sql, (de, contenuDe,typeDe) =>
+                    {
+                        de.Contenu_de = contenuDe;
+                         de.TypeDes = typeDe;
+                        de.TypeDe = typeDe.Type;
+                       return de;
+                    },
+                     splitOn: "contenu_de,Type");
+                    return De;
+                }
+                
+            }
+            catch (Exception ex)
+            {
+                dynamic z = null;
+                LogThisLine(ex.ToString());
+                MessageBox.Show("Problem technique, veuillez réessayer plus tard");
+                return z;
+            }
+
         }
 
         /// <summary>
@@ -119,6 +146,7 @@ namespace CreerLancerDe
         /// <param name="ls"></param>
         public static void ListSave<T>(string sqlString, List<DynamicParameters> ls)
         {
+            try { 
             using (var db = new SqlConnection(connectionString))
 
             {
@@ -128,7 +156,14 @@ namespace CreerLancerDe
                 {item }
                  ); });
             };
+            }
+            catch(Exception ex)
+            {
+                LogThisLine(ex.ToString());
+                MessageBox.Show("Problem technique, veuillez réessayer plus tard");
+            }
         }
+
         /// <summary>
         /// méthode pour sauvegarder une seule ligne dans la base
         /// </summary>
@@ -139,12 +174,22 @@ namespace CreerLancerDe
         public static int InsertData<T>(string sqlString, DynamicParameters parameters)
         {
 
-
-            using (var connection = new SqlConnection(connectionString))
+            try
             {
-                int result = connection.ExecuteScalar<int>(sqlString, parameters);
-                return result;
+                using (var connection = new SqlConnection(connectionString))
+                {
+                    int result = connection.ExecuteScalar<int>(sqlString, parameters);
+                    return result;
+                }
             }
+            catch(Exception ex)
+            {
+                LogThisLine(ex.ToString());
+                MessageBox.Show("Problem technique, veuillez réessayer plus tard");
+                return -1;
+              
+            }
+           
         }
         #endregion
 
