@@ -88,8 +88,8 @@ namespace CreerLancerDe.Utility_classes
                   
                     for (int j= 0;j<faces.Length;j++)
                     {
-                    var x = faces[j];
-                   values.Add(faces[j]);
+                       var x = faces[j];
+                      values.Add(faces[j]);
                     }
                    // }
                 //}

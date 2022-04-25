@@ -30,12 +30,14 @@ namespace CreerLancerDe
         {
             this.Hide();
             CreationDe creationDe = new CreationDe();
+            this.Close();
             creationDe.Show();
         }
 
         private void LancerDe_Click(object sender, EventArgs e)
         {
             LancerDe runDice = new LancerDe();
+            this.Close();
             runDice.Show();
         }
 

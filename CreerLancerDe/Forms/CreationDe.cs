@@ -150,5 +150,12 @@ namespace CreerLancerDe.Forms
             NomDeTxt.Clear();
             txtNFace.Clear();
         }
+
+        private void btnBackMain_Click(object sender, EventArgs e)
+        {
+            DeFormMain backMain = new DeFormMain();
+            this.Close();
+            backMain.Show();
+        }
     }
 }

@@ -38,6 +38,7 @@ namespace CreerLancerDe.Forms
             this.label1 = new System.Windows.Forms.Label();
             this.smtCreation = new System.Windows.Forms.Button();
             this.errorNombreFaces = new System.Windows.Forms.ErrorProvider(this.components);
+            this.btnBackMain = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.errorNombreFaces)).BeginInit();
             this.SuspendLayout();
             // 
@@ -93,7 +94,7 @@ namespace CreerLancerDe.Forms
             // 
             // smtCreation
             // 
-            this.smtCreation.Location = new System.Drawing.Point(105, 170);
+            this.smtCreation.Location = new System.Drawing.Point(227, 110);
             this.smtCreation.Name = "smtCreation";
             this.smtCreation.Size = new System.Drawing.Size(75, 23);
             this.smtCreation.TabIndex = 15;
@@ -105,12 +106,23 @@ namespace CreerLancerDe.Forms
             // 
             this.errorNombreFaces.ContainerControl = this;
             // 
+            // btnBackMain
+            // 
+            this.btnBackMain.Location = new System.Drawing.Point(1, 385);
+            this.btnBackMain.Name = "btnBackMain";
+            this.btnBackMain.Size = new System.Drawing.Size(94, 23);
+            this.btnBackMain.TabIndex = 16;
+            this.btnBackMain.Text = "Retour";
+            this.btnBackMain.UseVisualStyleBackColor = true;
+            this.btnBackMain.Click += new System.EventHandler(this.btnBackMain_Click);
+            // 
             // CreationDe
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.PaleGreen;
-            this.ClientSize = new System.Drawing.Size(686, 390);
+            this.ClientSize = new System.Drawing.Size(686, 420);
+            this.Controls.Add(this.btnBackMain);
             this.Controls.Add(this.smtCreation);
             this.Controls.Add(this.cmbTypeDe);
             this.Controls.Add(this.lblTypeDe);
@@ -135,5 +147,6 @@ namespace CreerLancerDe.Forms
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button smtCreation;
         private System.Windows.Forms.ErrorProvider errorNombreFaces;
+        private System.Windows.Forms.Button btnBackMain;
     }
 }

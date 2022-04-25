@@ -39,7 +39,9 @@ namespace CreerLancerDe.Forms
             ListtoDataTableConverter converter = new ListtoDataTableConverter();
             DataTable dt = converter.ToDataTable(des);
             dataGridView1.DataSource = dt;
-            int maxAge = des.Max(t => t.Faces);
+            dataGridView1.AllowUserToAddRows = false;
+            var x=dataGridView1.Columns;
+/*            int maxAge = des.Max(t => t.Faces);
           //  dataGridView1.ColumnCount = 4 + maxAge;
             dataGridView1.Columns[1].Name = "Nom";
             dataGridView1.Columns[2].Name = "Faces";
@@ -47,22 +49,22 @@ namespace CreerLancerDe.Forms
             for(int i = 1; i <= maxAge; i++)
             {
                 dataGridView1.Columns[i+3].Name = "Face" + (i);
-            }
+            }*/
 
 
 
         }
 
-
-
-        private void loadDropDownDe()
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            string sql_string = CEnum.Queries.QueryTypeDe;
-            List<TypeDe> types = DatabaseConn.ListReader<TypeDe>(sql_string);
-            
-            comboBox1.DataSource = types;
-            comboBox1.DisplayMember = "Type";
-            comboBox1.ValueMember = "Id";
+            // I suppose your check box is at column index 0
+            // To exclude header cell:  e.RowIndex >= 0  
+            // To exclude new row:      celle.RowIndex!=dataGridView1.newRowIndex
+
+            if (e.ColumnIndex == 0 && e.RowIndex >= 0 && e.RowIndex != dataGridView1.NewRowIndex)
+            {
+                //Put the logic here
+            }
         }
 
         private void listView1_SelectedIndexChanged(object sender, EventArgs e)
@@ -70,14 +72,66 @@ namespace CreerLancerDe.Forms
 
         }
 
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
 
-        }
 
         private void LancerDe_Load(object sender, EventArgs e)
         {
              
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            List<object> random= new List<object>();
+            string message = string.Empty;
+            dynamic cellRandom=null;
+            foreach (DataGridViewRow row in dataGridView1.Rows)
+            {
+                bool isSelected = Convert.ToBoolean(row.Cells["SelectedDice"].Value);
+                if (isSelected)
+                {
+                    
+                    List<object> listCount = new List<object>();
+
+                  /*  row.Cells[0].Visible = false;
+                  */
+                        foreach (DataGridViewCell dataGridViewCell in row.Cells)
+                        {
+                        if (dataGridViewCell.ColumnIndex > 3 && dataGridViewCell.FormattedValue.ToString() !="")
+                                 {
+                                    listCount.Add(dataGridViewCell.Value);
+                                 }
+
+                          
+                        }
+                    cellRandom= (FaceAleatoire(listCount));
+             /*       message += Environment.NewLine;
+                    message += row.Cells["Name"].Value.ToString();*/
+                }
+
+                
+                    row.Cells[row.Cells.Count - 1].Value = cellRandom;
+                
+
+
+
+            }
+        }
+
+        private dynamic FaceAleatoire(List<object> listCount)
+        {
+            Random rnd = new Random();
+            dynamic x= listCount.ToArray();
+            int index = rnd.Next(listCount.ToArray().Length);
+            dynamic returnValue = listCount[index];
+            return returnValue;
+            //   int index=rnd.Next(listCount.Select(x => x.Name).ToArray();)
+        }
+
+        private void retourMain_Click(object sender, EventArgs e)
+        {
+            DeFormMain backMain = new DeFormMain();
+            this.Close();
+            backMain.Show();
         }
     }
     }
