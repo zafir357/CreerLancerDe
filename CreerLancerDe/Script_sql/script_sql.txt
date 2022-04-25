@@ -8,7 +8,7 @@ CREATE TABLE type_de (
 
 CREATE TABLE contenu_de (
     id int NOT NULL IDENTITY(1,1),
-    contenu_de TEXT NOT NULL,
+    [contenu_de] [varchar](255) NOT NULL,
 	CONSTRAINT PK_contenu_de  PRIMARY KEY(Id)
 );
 
