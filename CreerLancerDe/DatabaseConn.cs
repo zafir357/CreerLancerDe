@@ -185,7 +185,7 @@ namespace CreerLancerDe
             catch(Exception ex)
             {
                 LogThisLine(ex.ToString());
-                MessageBox.Show("Problem technique, veuillez réessayer plus tard");
+               // MessageBox.Show("Problem technique, veuillez réessayer plus tard");
                 return -1;
               
             }

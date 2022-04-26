@@ -39,13 +39,17 @@ namespace CreerLancerDe.Forms
             this.smtCreation = new System.Windows.Forms.Button();
             this.errorNombreFaces = new System.Windows.Forms.ErrorProvider(this.components);
             this.btnBackMain = new System.Windows.Forms.Button();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.panel2 = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.errorNombreFaces)).BeginInit();
+            this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // cmbTypeDe
             // 
+            this.cmbTypeDe.Enabled = false;
             this.cmbTypeDe.FormattingEnabled = true;
-            this.cmbTypeDe.Location = new System.Drawing.Point(105, 112);
+            this.cmbTypeDe.Location = new System.Drawing.Point(105, 84);
             this.cmbTypeDe.Name = "cmbTypeDe";
             this.cmbTypeDe.Size = new System.Drawing.Size(81, 21);
             this.cmbTypeDe.TabIndex = 14;
@@ -54,7 +58,7 @@ namespace CreerLancerDe.Forms
             // lblTypeDe
             // 
             this.lblTypeDe.AutoSize = true;
-            this.lblTypeDe.Location = new System.Drawing.Point(17, 115);
+            this.lblTypeDe.Location = new System.Drawing.Point(17, 87);
             this.lblTypeDe.Name = "lblTypeDe";
             this.lblTypeDe.Size = new System.Drawing.Size(46, 13);
             this.lblTypeDe.TabIndex = 13;
@@ -62,22 +66,23 @@ namespace CreerLancerDe.Forms
             // 
             // NomDeTxt
             // 
-            this.NomDeTxt.Location = new System.Drawing.Point(105, 75);
+            this.NomDeTxt.Location = new System.Drawing.Point(105, 47);
             this.NomDeTxt.Name = "NomDeTxt";
             this.NomDeTxt.Size = new System.Drawing.Size(81, 20);
             this.NomDeTxt.TabIndex = 11;
             // 
             // txtNFace
             // 
-            this.txtNFace.Location = new System.Drawing.Point(105, 38);
+            this.txtNFace.Location = new System.Drawing.Point(105, 10);
             this.txtNFace.Name = "txtNFace";
             this.txtNFace.Size = new System.Drawing.Size(81, 20);
             this.txtNFace.TabIndex = 8;
+            this.txtNFace.TextChanged += new System.EventHandler(this.txtNFace_TextChanged);
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(17, 75);
+            this.label2.Location = new System.Drawing.Point(17, 47);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(59, 13);
             this.label2.TabIndex = 10;
@@ -86,7 +91,7 @@ namespace CreerLancerDe.Forms
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(17, 41);
+            this.label1.Location = new System.Drawing.Point(17, 13);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(88, 13);
             this.label1.TabIndex = 9;
@@ -94,7 +99,7 @@ namespace CreerLancerDe.Forms
             // 
             // smtCreation
             // 
-            this.smtCreation.Location = new System.Drawing.Point(227, 110);
+            this.smtCreation.Location = new System.Drawing.Point(328, 108);
             this.smtCreation.Name = "smtCreation";
             this.smtCreation.Size = new System.Drawing.Size(75, 23);
             this.smtCreation.TabIndex = 15;
@@ -108,7 +113,7 @@ namespace CreerLancerDe.Forms
             // 
             // btnBackMain
             // 
-            this.btnBackMain.Location = new System.Drawing.Point(1, 385);
+            this.btnBackMain.Location = new System.Drawing.Point(210, 108);
             this.btnBackMain.Name = "btnBackMain";
             this.btnBackMain.Size = new System.Drawing.Size(94, 23);
             this.btnBackMain.TabIndex = 16;
@@ -116,23 +121,45 @@ namespace CreerLancerDe.Forms
             this.btnBackMain.UseVisualStyleBackColor = true;
             this.btnBackMain.Click += new System.EventHandler(this.btnBackMain_Click);
             // 
+            // panel1
+            // 
+            this.panel1.AutoSize = true;
+            this.panel1.BackColor = System.Drawing.Color.Ivory;
+            this.panel1.Location = new System.Drawing.Point(1, 153);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(682, 264);
+            this.panel1.TabIndex = 17;
+            this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
+            // 
+            // panel2
+            // 
+            this.panel2.Controls.Add(this.btnBackMain);
+            this.panel2.Controls.Add(this.txtNFace);
+            this.panel2.Controls.Add(this.NomDeTxt);
+            this.panel2.Controls.Add(this.smtCreation);
+            this.panel2.Controls.Add(this.lblTypeDe);
+            this.panel2.Controls.Add(this.label1);
+            this.panel2.Controls.Add(this.label2);
+            this.panel2.Controls.Add(this.cmbTypeDe);
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel2.Location = new System.Drawing.Point(0, 0);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(686, 144);
+            this.panel2.TabIndex = 18;
+            // 
             // CreationDe
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.PaleGreen;
             this.ClientSize = new System.Drawing.Size(686, 420);
-            this.Controls.Add(this.btnBackMain);
-            this.Controls.Add(this.smtCreation);
-            this.Controls.Add(this.cmbTypeDe);
-            this.Controls.Add(this.lblTypeDe);
-            this.Controls.Add(this.NomDeTxt);
-            this.Controls.Add(this.txtNFace);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.panel2);
+            this.Controls.Add(this.panel1);
             this.Name = "CreationDe";
             this.Text = "CreationDe";
             ((System.ComponentModel.ISupportInitialize)(this.errorNombreFaces)).EndInit();
+            this.panel2.ResumeLayout(false);
+            this.panel2.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -148,5 +175,7 @@ namespace CreerLancerDe.Forms
         private System.Windows.Forms.Button smtCreation;
         private System.Windows.Forms.ErrorProvider errorNombreFaces;
         private System.Windows.Forms.Button btnBackMain;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel panel2;
     }
 }

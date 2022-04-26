@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-
+using static CréerLancerUnDé.Log.Logger;
 namespace CreerLancerDe
 {
     class validation
@@ -12,29 +12,42 @@ namespace CreerLancerDe
         public static int IntValidation(string intTxt, ErrorProvider errorProvider, TextBox text)
         {
             int parsedValue;
-            if (intTxt==CEnum.Variables.empty)
-            {
-                errorProvider.SetError(text, CEnum.Erreurs.errNumNull);
-                return 0;
-            }
 
-            else if (!int.TryParse(intTxt, out parsedValue))
+            try
             {
-                errorProvider.SetError(text,CEnum.Erreurs.errNumType);
-                return 0;
-            }
-            else
-            {
-                if (parsedValue > 0)
+                errorProvider.Clear();
+                if (intTxt == CEnum.Variables.empty)
                 {
-                    return parsedValue;
+                    errorProvider.SetError(text, CEnum.Erreurs.errNumNull);
+                    return -1;
+                }
+
+                else if (!int.TryParse(intTxt, out parsedValue))
+                {
+                    errorProvider.SetError(text, CEnum.Erreurs.errNumType);
+                    return -1;
                 }
                 else
                 {
-                    return 0;
-                }
+                    if (parsedValue > 0)
+                    {
+                        return parsedValue;
+                    }
+                    else
+                    {
+                        return -1;
+                    }
 
+                }
             }
+            catch(Exception ex)
+            {
+                LogThisLine("Exception Interne" + ex.ToString());
+                MessageBox.Show("Problème technique.  Essayer plus tard");
+                return 0;
+            }
+   
+
 
         }
     }

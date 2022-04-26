@@ -33,18 +33,23 @@ namespace CreerLancerDe.Forms
             this.SelectedDice = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.btnLancer = new System.Windows.Forms.Button();
             this.retourMain = new System.Windows.Forms.Button();
+            this.panel1 = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // dataGridView1
             // 
             this.dataGridView1.AllowUserToOrderColumns = true;
+            this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
+            this.dataGridView1.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCellsExceptHeaders;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.SelectedDice});
-            this.dataGridView1.Location = new System.Drawing.Point(2, 40);
+            this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.dataGridView1.Location = new System.Drawing.Point(0, 0);
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(797, 365);
+            this.dataGridView1.Size = new System.Drawing.Size(800, 365);
             this.dataGridView1.TabIndex = 1;
             this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
@@ -52,10 +57,11 @@ namespace CreerLancerDe.Forms
             // 
             this.SelectedDice.HeaderText = "Dé selectioner";
             this.SelectedDice.Name = "SelectedDice";
+            this.SelectedDice.Width = 81;
             // 
             // btnLancer
             // 
-            this.btnLancer.Location = new System.Drawing.Point(701, 420);
+            this.btnLancer.Location = new System.Drawing.Point(696, 3);
             this.btnLancer.Name = "btnLancer";
             this.btnLancer.Size = new System.Drawing.Size(98, 27);
             this.btnLancer.TabIndex = 2;
@@ -65,7 +71,7 @@ namespace CreerLancerDe.Forms
             // 
             // retourMain
             // 
-            this.retourMain.Location = new System.Drawing.Point(2, 420);
+            this.retourMain.Location = new System.Drawing.Point(3, 3);
             this.retourMain.Name = "retourMain";
             this.retourMain.Size = new System.Drawing.Size(93, 27);
             this.retourMain.TabIndex = 3;
@@ -73,18 +79,28 @@ namespace CreerLancerDe.Forms
             this.retourMain.UseVisualStyleBackColor = true;
             this.retourMain.Click += new System.EventHandler(this.retourMain_Click);
             // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.retourMain);
+            this.panel1.Controls.Add(this.btnLancer);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panel1.Location = new System.Drawing.Point(0, 411);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(800, 39);
+            this.panel1.TabIndex = 4;
+            // 
             // LancerDe
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.retourMain);
-            this.Controls.Add(this.btnLancer);
+            this.Controls.Add(this.panel1);
             this.Controls.Add(this.dataGridView1);
             this.Name = "LancerDe";
             this.Text = "LancerDe";
             this.Load += new System.EventHandler(this.LancerDe_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -94,5 +110,6 @@ namespace CreerLancerDe.Forms
         private System.Windows.Forms.DataGridViewCheckBoxColumn SelectedDice;
         private System.Windows.Forms.Button btnLancer;
         private System.Windows.Forms.Button retourMain;
+        private System.Windows.Forms.Panel panel1;
     }
 }
