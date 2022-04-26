@@ -28,17 +28,22 @@ namespace CreerLancerDe
 
         private void button1_Click(object sender, EventArgs e)
         {
-            this.Hide();
+   
             CreationDe creationDe = new CreationDe();
-            this.Close();
+            
+            creationDe.Show();
+            this.Hide();
+            creationDe.Closed += (s, args) => this.Close();
             creationDe.Show();
         }
 
         private void LancerDe_Click(object sender, EventArgs e)
         {
             LancerDe runDice = new LancerDe();
-            this.Close();
+            this.Hide();
+            runDice.Closed += (s, args) => this.Close();
             runDice.Show();
+         //   this.Close();
         }
 
         /*        public void ConfigureServices(IServiceCollection services)

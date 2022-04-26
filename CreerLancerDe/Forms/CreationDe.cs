@@ -154,7 +154,10 @@ namespace CreerLancerDe.Forms
         private void btnBackMain_Click(object sender, EventArgs e)
         {
             DeFormMain backMain = new DeFormMain();
-            this.Close();
+ 
+            backMain.Show();
+            this.Hide();
+            backMain.Closed += (s, args) => this.Close();
             backMain.Show();
         }
     }
