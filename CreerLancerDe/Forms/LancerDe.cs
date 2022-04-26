@@ -89,28 +89,28 @@ namespace CreerLancerDe.Forms
                 bool isSelected = Convert.ToBoolean(row.Cells["SelectedDice"].Value);
                 if (isSelected)
                 {
-                    
+
                     List<object> listCount = new List<object>();
 
-                  /*  row.Cells[0].Visible = false;
-                  */
-                        foreach (DataGridViewCell dataGridViewCell in row.Cells)
+                    /*  row.Cells[0].Visible = false;
+                    */
+                    foreach (DataGridViewCell dataGridViewCell in row.Cells)
+                    {
+                        if (dataGridViewCell.ColumnIndex > 3 && dataGridViewCell.FormattedValue.ToString() != "")
                         {
-                        if (dataGridViewCell.ColumnIndex > 3 && dataGridViewCell.FormattedValue.ToString() !="")
-                                 {
-                                    listCount.Add(dataGridViewCell.Value);
-                                 }
-
-                          
+                            listCount.Add(dataGridViewCell.Value);
                         }
-                    cellRandom= (FaceAleatoire(listCount));
-             /*       message += Environment.NewLine;
-                    message += row.Cells["Name"].Value.ToString();*/
-                }
 
-                
+
+                    }
+                    cellRandom = (FaceAleatoire(listCount));
+                    /*       message += Environment.NewLine;
+                           message += row.Cells["Name"].Value.ToString();*/
+
+
+
                     row.Cells[row.Cells.Count - 1].Value = cellRandom;
-                
+                }
 
 
 
