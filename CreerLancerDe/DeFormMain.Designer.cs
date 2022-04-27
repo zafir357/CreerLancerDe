@@ -35,6 +35,7 @@ namespace CreerLancerDe
             // 
             // CreerDe
             // 
+            this.CreerDe.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.CreerDe.Location = new System.Drawing.Point(283, 112);
             this.CreerDe.Name = "CreerDe";
             this.CreerDe.Size = new System.Drawing.Size(136, 38);
@@ -45,6 +46,7 @@ namespace CreerLancerDe
             // 
             // LancerDe
             // 
+            this.LancerDe.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.LancerDe.Location = new System.Drawing.Point(283, 188);
             this.LancerDe.Name = "LancerDe";
             this.LancerDe.Size = new System.Drawing.Size(136, 38);
