@@ -146,8 +146,6 @@ namespace CreerLancerDe.Forms
                 }
                 strFaces = String.Join("|",dynList.ToArray());
                 ParamContenuDe.Add("@strContenu", strFaces);
-                id = DatabaseConn.InsertData<ContenuDe>(CEnum.Queries.QueryInsertContenuDe, ParamContenuDe);
-                DeParams.Add("@Contenu_de",id);
                 bool insert = insertionBase(ParamContenuDe, DeParams, parsedValue);
                 if(insert == true){
                      errorNombreFaces.Clear();
@@ -222,10 +220,11 @@ namespace CreerLancerDe.Forms
             int id;
             int insertion;
             De de;
-            id = DatabaseConn.InsertData<ContenuDe>(CEnum.Queries.QueryInsertContenuDe, ParamContenuDe);
-            DeParams.Add("@Contenu_de", id);
+
             try
             {
+                id = DatabaseConn.InsertData<ContenuDe>(CEnum.Queries.QueryInsertContenuDe, ParamContenuDe);
+                DeParams.Add("@Contenu_de", id);
                 if (id > -1)
                 {
                     de = new De(parsedValue, Int32.Parse(cmbTypeDe.SelectedValue.ToString()), NomDeTxt.Text.Trim(), id);
