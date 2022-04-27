@@ -22,22 +22,6 @@ namespace CreerLancerDe.Forms
             loadListDropdown();
         }
 
-        private void label2_Click(object sender, EventArgs e)
-        {
-
-        }
-
-
-        private void label3_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void cmbTypeDe_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
         private void cmbTypeDe_SelectedIndexChanged_1(object sender, EventArgs e)
         {
             try
@@ -91,8 +75,8 @@ namespace CreerLancerDe.Forms
                     b.Enabled = true;
                     panel1.Show();
                     pointY += 20;
-                    //listTxtDynamic.Add(b.Text);
                 }
+                this.labelSetter(pointX, pointY);
             }
             catch (Exception ex)
             {
@@ -100,7 +84,6 @@ namespace CreerLancerDe.Forms
                 MessageBox.Show("Problème technique.  Essayer plus tard");
             }
         }
-
 
             private void loadListDropdown()
         {
@@ -138,9 +121,6 @@ namespace CreerLancerDe.Forms
                 }
                 else if(((TypeDe)cmbTypeDe.SelectedItem).Type == "Dé personnalisés")
                 {
-                    //  TextBox textbox4 = (TextBox)this.Controls.Find("textbox4", false).FirstOrDefault();
-
-
                     gestionDePersonaliser(parsedValue, DeParams);
                 }
                
@@ -148,7 +128,6 @@ namespace CreerLancerDe.Forms
             }
             catch (Exception ex)
             {
-                ///   new Logger.Logger().WriteLogError(new Logger.Logger(new Logger.Logger { CallerInfo = MethodBase.GetCurrentMethod().DeclaringType, Ex = ex }));
                 LogThisLine("Exception Interne" + ex.ToString());
             }
         }
@@ -158,40 +137,31 @@ namespace CreerLancerDe.Forms
             List<int> dynList = new List<int>();
             DynamicParameters ParamContenuDe = new DynamicParameters();
             int id;
-            De de;
+            string strFaces;
             try
             {
                 for (int i = 1; i <= parsedValue; i++)
                 {
                     dynList.Add(i);
                 }
-                string strFaces = String.Join("|",dynList.ToArray());
-                //string JsonObject = JsonConvert.SerializeObject(dynList);
+                strFaces = String.Join("|",dynList.ToArray());
                 ParamContenuDe.Add("@strContenu", strFaces);
                 id = DatabaseConn.InsertData<ContenuDe>(CEnum.Queries.QueryInsertContenuDe, ParamContenuDe);
                 DeParams.Add("@Contenu_de",id);
-                try
-                {
-                    if (id > -1)
-                    {
-                         de= new De(parsedValue, Int32.Parse(cmbTypeDe.SelectedValue.ToString()), NomDeTxt.Text.Trim(), id);
-                       int insertion= DatabaseConn.InsertData<De>(CEnum.Queries.QueryInsertDe, DeParams);
-                        if (insertion >0)
-                        {
-                            ViderChampCreationDe();
-                            MessageBox.Show("Dé sauvegarder");
-                        }
-                    }
+                bool insert = insertionBase(ParamContenuDe, DeParams, parsedValue);
+                if(insert == true){
+                     errorNombreFaces.Clear();
+                     MessageBox.Show("Dé sauvegarder");
                 }
-                catch(Exception ex)
+                else
                 {
-                    LogThisLine("Exception Interne"+ex.ToString());
                     MessageBox.Show("Problème technique.  Essayer plus tard");
                 }
             }
             catch (Exception ex)
             {
                 LogThisLine(ex.ToString());
+                MessageBox.Show("Problème technique.  Essayer plus tard");
             }
 
         }
@@ -203,12 +173,8 @@ namespace CreerLancerDe.Forms
             {
                 TextBox txtCounter = ((TextBox)this.Controls.Find(("Face" + (i + 1)).ToString(), true).FirstOrDefault());
                 listTxtDynamic.Add(txtCounter.Text);
-
-
             }
         }
-
-
 
         private void ViderChampCreationDe()
         {
@@ -227,11 +193,6 @@ namespace CreerLancerDe.Forms
             backMain.Show();
         }
 
-        private void panel1_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
         private void txtNFace_TextChanged(object sender, EventArgs e)
         {
             int parsedValue = validation.IntValidation(txtNFace.Text.Trim(), errorNombreFaces, txtNFace);
@@ -245,5 +206,51 @@ namespace CreerLancerDe.Forms
             }
          
         }
+        private void labelSetter(int pointX, int pointY)
+        {
+            Label c = (new Label() { AutoSize = true });
+            c.ForeColor = Color.DarkBlue;
+            c.Location = new Point(pointX + 110, pointY - 100);
+            c.Text = "Utiliser virgule pour multiples valeur sur une face";
+            panel1.Controls.Add(c);
+            c.Enabled = true;
+            c.Show();
+        }
+
+        public bool insertionBase(DynamicParameters ParamContenuDe, DynamicParameters DeParams, int parsedValue)
+        {
+            int id;
+            int insertion;
+            De de;
+            id = DatabaseConn.InsertData<ContenuDe>(CEnum.Queries.QueryInsertContenuDe, ParamContenuDe);
+            DeParams.Add("@Contenu_de", id);
+            try
+            {
+                if (id > -1)
+                {
+                    de = new De(parsedValue, Int32.Parse(cmbTypeDe.SelectedValue.ToString()), NomDeTxt.Text.Trim(), id);
+                    insertion = DatabaseConn.InsertData<De>(CEnum.Queries.QueryInsertDe, DeParams);
+                    if (insertion > -1)
+                    {
+                        ViderChampCreationDe();
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            catch (Exception ex)
+            {
+                LogThisLine("Exception Interne" + ex.ToString());
+                return false;
+            }
+        }
+
     }
 }

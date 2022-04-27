@@ -61,7 +61,7 @@ namespace CreerLancerDe.Forms
             // 
             // btnLancer
             // 
-            this.btnLancer.Location = new System.Drawing.Point(696, 3);
+            this.btnLancer.Location = new System.Drawing.Point(102, 3);
             this.btnLancer.Name = "btnLancer";
             this.btnLancer.Size = new System.Drawing.Size(98, 27);
             this.btnLancer.TabIndex = 2;
