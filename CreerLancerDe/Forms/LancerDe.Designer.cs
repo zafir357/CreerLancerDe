@@ -51,7 +51,6 @@ namespace CreerLancerDe.Forms
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.Size = new System.Drawing.Size(800, 365);
             this.dataGridView1.TabIndex = 1;
-            this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
             // SelectedDice
             // 
@@ -98,7 +97,6 @@ namespace CreerLancerDe.Forms
             this.Controls.Add(this.dataGridView1);
             this.Name = "LancerDe";
             this.Text = "LancerDe";
-            this.Load += new System.EventHandler(this.LancerDe_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);

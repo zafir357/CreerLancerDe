@@ -40,10 +40,8 @@ namespace CreerLancerDe.Forms
             this.errorNombreFaces = new System.Windows.Forms.ErrorProvider(this.components);
             this.btnBackMain = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.label3 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.errorNombreFaces)).BeginInit();
-            this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -127,21 +125,10 @@ namespace CreerLancerDe.Forms
             // 
             this.panel1.AutoSize = true;
             this.panel1.BackColor = System.Drawing.Color.Ivory;
-            this.panel1.Controls.Add(this.label3);
             this.panel1.Location = new System.Drawing.Point(1, 153);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(682, 264);
             this.panel1.TabIndex = 17;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label3.Location = new System.Drawing.Point(0, 0);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(28, 13);
-            this.label3.TabIndex = 0;
-            this.label3.Text = "Text";
             // 
             // panel2
             // 
@@ -170,8 +157,6 @@ namespace CreerLancerDe.Forms
             this.Name = "CreationDe";
             this.Text = "CreationDe";
             ((System.ComponentModel.ISupportInitialize)(this.errorNombreFaces)).EndInit();
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             this.ResumeLayout(false);
@@ -191,6 +176,5 @@ namespace CreerLancerDe.Forms
         private System.Windows.Forms.Button btnBackMain;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.Label label3;
     }
 }

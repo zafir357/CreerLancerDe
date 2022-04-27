@@ -1,4 +1,7 @@
-﻿using System;
+﻿
+
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,6 +12,7 @@ namespace CreerLancerDe
 {
     class validation
     {
+        #region Validation champ nombre de faces
         public static int IntValidation(string intTxt, ErrorProvider errorProvider, TextBox text)
         {
             int parsedValue;
@@ -40,16 +44,17 @@ namespace CreerLancerDe
 
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 LogThisLine("Exception Interne" + ex.ToString());
                 MessageBox.Show("Problème technique.  Essayer plus tard");
                 return 0;
             }
-   
 
 
-        }
+
+        } 
+        #endregion
 
 
     }

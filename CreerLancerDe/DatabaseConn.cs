@@ -107,6 +107,7 @@ namespace CreerLancerDe
 
 
 
+        #region Inner join de contenu_de, de et type par l'ORM dapper
         public static dynamic DeContenuDe()
         {
             try
@@ -116,17 +117,17 @@ namespace CreerLancerDe
                     var sql = "SELECT de.[id] ,de.[nom_de] ,de.[faces], conde.[contenu_de],td.Type, conde.[contenu_de] FROM [dbo].[de] "
                                 + "inner join contenu_de conde on de.contenu_de_id = conde.id "
                                 + "inner join  type_de td on de.type_de_id = td.Id";
-                    dynamic De = connection.Query<DeModel, DeContenuModel, TypeDeModel, DeModel>(sql, (de, contenuDe,typeDe) =>
+                    dynamic De = connection.Query<DeModel, DeContenuModel, TypeDeModel, DeModel>(sql, (de, contenuDe, typeDe) =>
                     {
                         de.Contenu_de = contenuDe;
-                         de.TypeDes = typeDe;
+                        de.TypeDes = typeDe;
                         de.TypeDe = typeDe.Type;
-                       return de;
+                        return de;
                     },
                      splitOn: "contenu_de,Type");
                     return De;
                 }
-                
+
             }
             catch (Exception ex)
             {
@@ -137,35 +138,43 @@ namespace CreerLancerDe
             }
 
         }
+        #endregion
 
+        #region Sauvegarder une liste imbriquée d'objets
         /// <summary>
-        /// 
+        /// Sauvegarder une liste de liste d'objets
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="sqlString"></param>
         /// <param name="ls"></param>
         public static void ListSave<T>(string sqlString, List<DynamicParameters> ls)
         {
-            try { 
-            using (var db = new SqlConnection(connectionString))
-
+            try
             {
-                ls.ForEach(delegate (DynamicParameters item) {
-                    int rowsAffected = db.Execute(sqlString,
-                        new[]
-                {item }
-                 ); });
-            };
+                using (var db = new SqlConnection(connectionString))
+
+                {
+                    ls.ForEach(delegate (DynamicParameters item)
+                    {
+                        int rowsAffected = db.Execute(sqlString,
+                            new[]
+                    {item }
+                     );
+                    });
+                };
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 LogThisLine(ex.ToString());
-                MessageBox.Show("Problem technique, veuillez réessayer plus tard");
+                throw;
             }
         }
+        #endregion
+
+        #region Sauvegarders une liste d'objets dans la base(une ligne)
 
         /// <summary>
-        /// méthode pour sauvegarder une seule ligne dans la base
+        /// méthode pour sauvegarder une seule ligne dans la base(format list)
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="sqlString"></param>
@@ -182,14 +191,15 @@ namespace CreerLancerDe
                     return result;
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 LogThisLine(ex.ToString());
-               // MessageBox.Show("Problem technique, veuillez réessayer plus tard");
+                // MessageBox.Show("Problem technique, veuillez réessayer plus tard");
                 return -1;
-              
+
             }
-           
+
+            #endregion
         }
         #endregion
 
