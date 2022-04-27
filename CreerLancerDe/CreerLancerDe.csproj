@@ -137,6 +137,7 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utility classes\ListtoDataTableConverter.cs" />
+    <Compile Include="Utility classes\MethodsLancementDe.cs" />
     <Compile Include="Utility classes\side_dice.cs" />
     <Compile Include="Utility classes\validation.cs" />
     <EmbeddedResource Include="DeFormMain.resx">

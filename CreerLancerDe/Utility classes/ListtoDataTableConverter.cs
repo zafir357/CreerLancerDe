@@ -65,11 +65,8 @@ namespace CreerLancerDe.Utility_classes
                 dt.Rows.Add(values.ToArray());
 
             }
-            //put a breakpoint here and check datatable
             return dt;
         }
-
-
     }
    static class ArraySwitch
     {

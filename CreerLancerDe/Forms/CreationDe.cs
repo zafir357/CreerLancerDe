@@ -1,4 +1,5 @@
 ﻿using CreerLancerDe.Classes;
+using CreerLancerDe.Utility_classes;
 using Dapper;
 using Newtonsoft.Json;
 using System;
@@ -29,8 +30,7 @@ namespace CreerLancerDe.Forms
                 if (((TypeDe)cmbTypeDe.SelectedItem).Type == "Dé personnalisés")
                 {
                     if (txtNFace.Text.Trim() != "")
-                    {
-                      
+                    {                    
                         panel1.Dock = System.Windows.Forms.DockStyle.Fill;
                         panel1.AutoScroll = true;
                         int parsedValue = validation.IntValidation(txtNFace.Text.Trim(), errorNombreFaces, txtNFace);
@@ -136,7 +136,7 @@ namespace CreerLancerDe.Forms
         {
             List<dynamic> dynList = new List<dynamic>();
             DynamicParameters ParamContenuDe = new DynamicParameters();
-               bool strJoin= bouclerList(parsedValue, dynList, ParamContenuDe);
+               bool strJoin= MethodsLancementDe.bouclerList(parsedValue, dynList, ParamContenuDe);
                 if (strJoin == true)
                 {
                     bool insert = insertionBase(ParamContenuDe, DeParams, parsedValue);
@@ -155,27 +155,6 @@ namespace CreerLancerDe.Forms
                     MessageBox.Show("Problème technique.  Essayer plus tard");
                 }
         }
-        public bool bouclerList(int parsedValue, List<dynamic> dynList, DynamicParameters ParamContenuDe)
-        {
-            string strFaces;
-            for (int i = 1; i <= parsedValue; i++)
-            {
-                dynList.Add(i);
-            }
-            strFaces = String.Join("|", dynList.ToArray());
-            if (strFaces != "")
-            {
-                ParamContenuDe.Add("@strContenu", strFaces);
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-
-        }
-
-
         private void gestionDePersonaliser(int parsedValue, DynamicParameters DeParams)
         {
             DynamicParameters ParamContenuDe = new DynamicParameters();
@@ -200,8 +179,7 @@ namespace CreerLancerDe.Forms
                 else
                 {
                     MessageBox.Show("Problème technique.  Essayer plus tard");
-                }
-                    
+                }           
             }
             else
             {
@@ -237,8 +215,7 @@ namespace CreerLancerDe.Forms
             else
             {
                 cmbTypeDe.Enabled = false;
-            }
-         
+            }      
         }
         private void labelSetter(int pointX)
         {
