@@ -51,7 +51,7 @@ namespace CreerLancerDe.Forms
             this.cmbTypeDe.FormattingEnabled = true;
             this.cmbTypeDe.Location = new System.Drawing.Point(105, 84);
             this.cmbTypeDe.Name = "cmbTypeDe";
-            this.cmbTypeDe.Size = new System.Drawing.Size(81, 21);
+            this.cmbTypeDe.Size = new System.Drawing.Size(113, 21);
             this.cmbTypeDe.TabIndex = 14;
             this.cmbTypeDe.SelectedIndexChanged += new System.EventHandler(this.cmbTypeDe_SelectedIndexChanged_1);
             // 
@@ -68,14 +68,14 @@ namespace CreerLancerDe.Forms
             // 
             this.NomDeTxt.Location = new System.Drawing.Point(105, 47);
             this.NomDeTxt.Name = "NomDeTxt";
-            this.NomDeTxt.Size = new System.Drawing.Size(81, 20);
+            this.NomDeTxt.Size = new System.Drawing.Size(97, 20);
             this.NomDeTxt.TabIndex = 11;
             // 
             // txtNFace
             // 
             this.txtNFace.Location = new System.Drawing.Point(105, 10);
             this.txtNFace.Name = "txtNFace";
-            this.txtNFace.Size = new System.Drawing.Size(81, 20);
+            this.txtNFace.Size = new System.Drawing.Size(97, 20);
             this.txtNFace.TabIndex = 8;
             this.txtNFace.TextChanged += new System.EventHandler(this.txtNFace_TextChanged);
             // 
