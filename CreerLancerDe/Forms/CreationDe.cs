@@ -76,7 +76,7 @@ namespace CreerLancerDe.Forms
                     panel1.Show();
                     pointY += 20;
                 }
-                this.labelSetter(pointX, pointY);
+                this.labelSetter(pointX);
             }
             catch (Exception ex)
             {
@@ -134,44 +134,80 @@ namespace CreerLancerDe.Forms
 
         private void gestionDeClassic(int parsedValue, DynamicParameters DeParams)
         {
-            List<int> dynList = new List<int>();
+            List<dynamic> dynList = new List<dynamic>();
             DynamicParameters ParamContenuDe = new DynamicParameters();
-            int id;
-            string strFaces;
-            try
-            {
-                for (int i = 1; i <= parsedValue; i++)
+               bool strJoin= bouclerList(parsedValue, dynList, ParamContenuDe);
+                if (strJoin == true)
                 {
-                    dynList.Add(i);
-                }
-                strFaces = String.Join("|",dynList.ToArray());
-                ParamContenuDe.Add("@strContenu", strFaces);
-                bool insert = insertionBase(ParamContenuDe, DeParams, parsedValue);
-                if(insert == true){
-                     errorNombreFaces.Clear();
-                     MessageBox.Show("Dé sauvegarder");
+                    bool insert = insertionBase(ParamContenuDe, DeParams, parsedValue);
+                    if (insert == true)
+                    {
+                        errorNombreFaces.Clear();
+                        MessageBox.Show("Dé sauvegarder");
+                    }
+                    else
+                    {
+                        MessageBox.Show("Problème technique.  Essayer plus tard");
+                    }
                 }
                 else
                 {
                     MessageBox.Show("Problème technique.  Essayer plus tard");
                 }
-            }
-            catch (Exception ex)
+        }
+        public bool bouclerList(int parsedValue, List<dynamic> dynList, DynamicParameters ParamContenuDe)
+        {
+            string strFaces;
+            for (int i = 1; i <= parsedValue; i++)
             {
-                LogThisLine(ex.ToString());
-                MessageBox.Show("Problème technique.  Essayer plus tard");
+                dynList.Add(i);
+            }
+            strFaces = String.Join("|", dynList.ToArray());
+            if (strFaces != "")
+            {
+                ParamContenuDe.Add("@strContenu", strFaces);
+                return true;
+            }
+            else
+            {
+                return false;
             }
 
         }
 
+
         private void gestionDePersonaliser(int parsedValue, DynamicParameters DeParams)
         {
+            DynamicParameters ParamContenuDe = new DynamicParameters();
             List<object> listTxtDynamic = new List<object>();
+            string strFaces;
             for (int i = 0; i < parsedValue; i++)
             {
                 TextBox txtCounter = ((TextBox)this.Controls.Find(("Face" + (i + 1)).ToString(), true).FirstOrDefault());
                 listTxtDynamic.Add(txtCounter.Text);
             }
+            strFaces = String.Join("|", listTxtDynamic.ToArray());
+            if (strFaces != "")
+            {
+                ParamContenuDe.Add("@strContenu", strFaces);
+                    bool insert = insertionBase(ParamContenuDe, DeParams, parsedValue);
+                if (insert == true)
+                {
+                    errorNombreFaces.Clear();
+                    panel1.Controls.Clear();
+                    MessageBox.Show("Dé sauvegarder");
+                }
+                else
+                {
+                    MessageBox.Show("Problème technique.  Essayer plus tard");
+                }
+                    
+            }
+            else
+            {
+                MessageBox.Show("Problème technique.  Essayer plus tard");
+            }
+
         }
 
         private void ViderChampCreationDe()
@@ -204,11 +240,11 @@ namespace CreerLancerDe.Forms
             }
          
         }
-        private void labelSetter(int pointX, int pointY)
+        private void labelSetter(int pointX)
         {
             Label c = (new Label() { AutoSize = true });
             c.ForeColor = Color.DarkBlue;
-            c.Location = new Point(pointX + 110, pointY - 100);
+            c.Location = new Point(pointX + 110, 150);
             c.Text = "Utiliser virgule pour multiples valeur sur une face";
             panel1.Controls.Add(c);
             c.Enabled = true;
@@ -220,7 +256,6 @@ namespace CreerLancerDe.Forms
             int id;
             int insertion;
             De de;
-
             try
             {
                 id = DatabaseConn.InsertData<ContenuDe>(CEnum.Queries.QueryInsertContenuDe, ParamContenuDe);
